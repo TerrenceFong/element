@@ -303,8 +303,8 @@ export default class Node {
     let { all, allWithoutDisable } = getChildState(this.childNodes);
 
     if (this.childNodes.length && (!all && allWithoutDisable)) {
-      this.checked = false;
-      value = false;
+      // this.checked = false;
+      // value = false;
     }
 
     const handleDescendants = (lazy) => {
