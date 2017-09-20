@@ -186,13 +186,13 @@
         }, 500);
       },
       getCheckedNodes() {
-        console.log(this.$refs.tree.getCheckedNodes());
+        console.log(this.$refs.tree1.getCheckedNodes());
       },
       getCheckedKeys() {
-        console.log(this.$refs.tree.getCheckedKeys());
+        console.log(this.$refs.tree1.getCheckedKeys());
       },
       setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([
+        this.$refs.tree1.setCheckedNodes([
           {
             id: 5,
             label: '二级 2-1'
@@ -204,12 +204,15 @@
         ]);
       },
       setCheckedKeys() {
-        this.$refs.tree.setCheckedKeys([3]);
+        this.$refs.tree1.setCheckedKeys([3]);
       },
       resetChecked() {
-        this.$refs.tree.setCheckedKeys([]);
+        this.$refs.tree1.setCheckedKeys([]);
       },
       append(store, data) {
+        console.log('data', data)
+        data.children = []
+        data.children.push({ id: id++, label: 'testtest', children: [] })
         store.append({ id: id++, label: 'testtest', children: [] }, data);
       },
 
@@ -224,7 +227,7 @@
               <span>{node.label}</span>
             </span>
             <span style="float: right; margin-right: 20px">
-              <el-button size="mini" on-click={ () => this.append(store, data) }>Append</el-button>
+              <el-button size="mini" on-click={ () => this.append(store, data) }>+</el-button>
               <el-button size="mini" on-click={ () => this.remove(store, data) }>Delete</el-button>
             </span>
           </span>);
@@ -621,9 +624,16 @@
   node-key="id"
   default-expand-all
   :expand-on-click-node="false"
+  ref="tree1"
   :render-content="renderContent">
 </el-tree>
-
+<div class="buttons">
+  <el-button @click="getCheckedNodes">通过 node 获取</el-button>
+  <el-button @click="getCheckedKeys">通过 key 获取</el-button>
+  <el-button @click="setCheckedNodes">通过 node 设置</el-button>
+  <el-button @click="setCheckedKeys">通过 key 设置</el-button>
+  <el-button @click="resetChecked">清空</el-button>
+</div>
 <script>
   let id = 1000;
 

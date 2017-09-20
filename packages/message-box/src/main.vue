@@ -11,7 +11,7 @@
         </div>
         <div class="el-message-box__content" v-if="message !== ''">
           <div class="el-message-box__status" :class="[ typeClass ]"></div>
-          <div class="el-message-box__message" :style="{ 'margin-left': typeClass ? '50px' : '0' }">
+          <div class="el-message-box__message" :style="{ 'margin-left': typeClass ? '50px' : '0' }" v-if="visible">
             <slot><p>{{ message }}</p></slot>
           </div>
           <div class="el-message-box__input" v-show="showInput">

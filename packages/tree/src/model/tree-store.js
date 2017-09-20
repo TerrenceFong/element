@@ -11,7 +11,6 @@ export default class TreeStore {
         this[option] = options[option];
       }
     }
-
     this.nodesMap = {};
 
     this.root = new Node({
@@ -97,6 +96,10 @@ export default class TreeStore {
     if (parentNode) {
       parentNode.insertChild({ data });
     }
+  }
+
+  getData() {
+    return this.data;
   }
 
   _initDefaultCheckedNodes() {

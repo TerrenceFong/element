@@ -60,32 +60,53 @@
 
 
       open4() {
+        console.log(this.$refs)
         const h = this.$createElement;
         this.$msgbox({
           title: '消息',
-          message: h('p', null, [
-            h('span', null, '内容可以是 '),
-            h('i', { style: 'color: teal' }, 'VNode')
-          ]),
+          message: h('el-tree', {
+            style: {
+              maxHeight: '400px',
+              overflowY: 'auto'
+            },
+            props: {
+              data: [{"code":"0104020014","name":"S116","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020015","name":"S131","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020016","name":"S137（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020017","name":"S202","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020018","name":"S228","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020019","name":"S234（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020020","name":"S254","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020021","name":"S266（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020022","name":"S302","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020023","name":"S324","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020024","name":"S329（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020025","name":"S344","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020026","name":"S354（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020027","name":"S420","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020028","name":"S424（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020029","name":"S436","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020030","name":"S444（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020031","name":"S518","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020032","name":"S522（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020034","name":"S601B","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020035","name":"S601C","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020036","name":"S602","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020037","name":"S3136（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020038","name":"S4116（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020039","name":"J176","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020040","name":"J268","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020041","name":"J362","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020042","name":"J456","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020043","name":"J530","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020044","name":"J274j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020045","name":"J366j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020046","name":"J460j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020047","name":"J536j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020048","name":"J609（S）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020049","name":"J608（M）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020050","name":"J607（L）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020051","name":"S610（S）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020052","name":"S608（M）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020053","name":"S606（L）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020054","name":"S256j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020055","name":"S344j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020056","name":"S436j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020057","name":"S532j（母）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020058","name":"J3136（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020059","name":"J4124（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020060","name":"J5108（电）","level":5,"type":5,"isLast":"0","children":null},{"code":"0104020061","name":"S596（电）","level":5,"type":5,"isLast":"0","children":null}],
+              nodeKey: 'code',
+              showCheckbox: true,
+              props: {
+                children: 'children',
+                label: 'name',
+                disabled:'disabled'
+              }
+            },
+            ref: 'appendTreeRef',
+          }),
           showCancelButton: true,
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           beforeClose: (action, instance, done) => {
+            // console.log(this.$close)
             if (action === 'confirm') {
               instance.confirmButtonLoading = true;
               instance.confirmButtonText = '执行中...';
               setTimeout(() => {
+                let checkedNodes = this.$refs.appendTreeRef.getCheckedNodes()
+                console.log(checkedNodes)
                 done();
                 setTimeout(() => {
                   instance.confirmButtonLoading = false;
                 }, 300);
-              }, 3000);
+              }, 300);
             } else {
               done();
             }
           }
         }).then(action => {
+          console.log(this.$refs)
           setTimeout(() => {
+            console.log(this.$refs)
+            // let checkedNodes = this.$refs.appendTreeRef.getCheckedNodes()
+            // console.log(checkedNodes)
             this.$message({
               type: 'info',
               message: 'action: ' + action
