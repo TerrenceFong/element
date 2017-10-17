@@ -23,6 +23,9 @@ LoadingConstructor.prototype.close = function() {
     fullscreenLoading = undefined;
   }
   this.$on('after-leave', _ => {
+    if (this.lock && this.originalOverflow !== 'hidden') {
+      this.target.style.overflow = 'auto';
+    }
     if (this.fullscreen && this.originalOverflow !== 'hidden') {
       document.body.style.overflow = this.originalOverflow;
     }
@@ -90,7 +93,10 @@ const Loading = (options = {}) => {
   if (instance.originalPosition !== 'absolute' && instance.originalPosition !== 'fixed') {
     parent.style.position = 'relative';
   }
-  if (options.fullscreen || options.lock) {
+  if (options.lock) {
+    parent.style.overflow = 'hidden';
+  }
+  if (options.fullscreen && options.lock) {
     parent.style.overflow = 'hidden';
   }
   parent.appendChild(instance.$el);

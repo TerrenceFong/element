@@ -35,7 +35,11 @@
         }, 3000);
       },
       closeload() {
-        this.loading2 = !this.loading2
+        // this.loading2 = !this.loading2
+        this.loadingInstance1.close()
+      },
+      open() {
+        this.loadingInstance1 = this.$loading({target: '.content-container', text: '拼命加载中', lock: true})
       }
     }
   }
@@ -111,7 +115,7 @@
 ```html
 <template>
   <el-table
-    v-loading.lock="loading2"
+    class="content-container"
     element-loading-text="拼命加载中"
     :data="tableData"
     style="width: 100%">
@@ -130,9 +134,8 @@
       label="地址">
     </el-table-column>
   </el-table>
-  <el-button
-    type="primary" @click="closeload">close
-  </el-button>
+  <el-button type="primary" @click="open">open</el-button>
+  <el-button type="primary" @click="closeload">close</el-button>
 </template>
 
 <script>

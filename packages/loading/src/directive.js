@@ -63,7 +63,10 @@ exports.install = Vue => {
       if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed') {
         parent.style.position = 'relative';
       }
-      if (binding.modifiers.fullscreen || binding.modifiers.lock) {
+      if (binding.modifiers.lock) {
+        parent.style.overflow = 'hidden';
+      }
+      if (binding.modifiers.fullscreen && binding.modifiers.lock) {
         parent.style.overflow = 'hidden';
       }
       el.domVisible = true;
