@@ -108,7 +108,7 @@
 ```html
 <template>
   <el-table
-    v-loading="loading2"
+    v-loading.lock="loading2"
     element-loading-text="拼命加载中"
     :data="tableData"
     style="width: 100%">
