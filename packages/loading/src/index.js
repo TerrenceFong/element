@@ -90,7 +90,7 @@ const Loading = (options = {}) => {
   if (instance.originalPosition !== 'absolute' && instance.originalPosition !== 'fixed') {
     parent.style.position = 'relative';
   }
-  if (options.fullscreen && options.lock) {
+  if (options.fullscreen || options.lock) {
     parent.style.overflow = 'hidden';
   }
   parent.appendChild(instance.$el);
