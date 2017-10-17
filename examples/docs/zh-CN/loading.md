@@ -22,7 +22,7 @@
           address: '上海市普陀区金沙江路 1518 弄'
         }],
         loading: true,
-        loading2: true,
+        loading2: false,
         fullscreenLoading: false
       }
     },
@@ -33,6 +33,9 @@
         setTimeout(() => {
           this.fullscreenLoading = false;
         }, 3000);
+      },
+      closeload() {
+        this.loading2 = !this.loading2
       }
     }
   }
@@ -127,6 +130,9 @@
       label="地址">
     </el-table-column>
   </el-table>
+  <el-button
+    type="primary" @click="closeload">close
+  </el-button>
 </template>
 
 <script>

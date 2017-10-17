@@ -41,6 +41,9 @@ exports.install = Vue => {
           if (binding.modifiers.fullscreen && el.originalOverflow !== 'hidden') {
             document.body.style.overflow = el.originalOverflow;
           }
+          if (binding.modifiers.lock && el.originalOverflow !== 'hidden') {
+            el.style.overflow = 'auto';
+          }
           if (binding.modifiers.fullscreen || binding.modifiers.body) {
             document.body.style.position = el.originalPosition;
           } else {
