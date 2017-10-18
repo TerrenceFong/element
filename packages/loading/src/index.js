@@ -91,7 +91,11 @@ const Loading = (options = {}) => {
 
   addStyle(options, parent, instance);
   if (instance.originalPosition !== 'absolute' && instance.originalPosition !== 'fixed') {
-    parent.style.position = 'relative';
+    if (options.lock && !options.fullscreen) {
+
+    } else {
+      parent.style.position = 'relative';
+    }
   }
   if (options.lock) {
     parent.style.overflow = 'hidden';
