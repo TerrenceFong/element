@@ -60,6 +60,7 @@ const addStyle = (options, parent, instance) => {
       maskStyle[property] = options.target.getBoundingClientRect()[property] + 'px';
     });
   } else {
+    console.log(111);
     instance.originalPosition = getStyle(parent, 'position');
   }
   Object.keys(maskStyle).forEach(property => {
@@ -91,8 +92,9 @@ const Loading = (options = {}) => {
 
   addStyle(options, parent, instance);
   if (instance.originalPosition !== 'absolute' && instance.originalPosition !== 'fixed') {
+    // 尽量不要单独使用 lock, 会有意想不到的问题
     if (options.lock && !options.fullscreen) {
-
+      parent.style.position = 'static';
     } else {
       parent.style.position = 'relative';
     }
